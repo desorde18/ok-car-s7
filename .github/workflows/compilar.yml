@@ -40,15 +40,21 @@ jobs:
         # O sync baixa o default.xml e todos os repositórios, incluindo o 'okcar-os/okcar'
         repo sync -c -j$(nproc --all) --force-sync --no-clone-bundle --no-tags
 
-    - name: Configurar Ambiente de Compilação do Android
+ - name: Baixar Árvores do Galaxy S7 Edge (hero2lte)
+      run: |
+        cd okcar_source
+        # Puxa as configurações específicas de hardware que a comunidade LineageOS criou para o S7 Edge
+        git clone https://github.com/LineageOS/android_device_samsung_hero2lte.git -b lineage-18.1 device/samsung/hero2lte
+        git clone https://github.com/LineageOS/android_device_samsung_universal8890-common.git -b lineage-18.1 device/samsung/universal8890-common
+        # Nota: Também precisarias de clonar o Kernel e os blobs proprietários (vendor) do S7 para compilar tudo junto
+
+    - name: Configurar Ambiente e Compilar para o S7 Edge
       run: |
         cd okcar_source
         source build/envsetup.sh
-        # Aqui você precisaria escolher o "lunch" específico do seu dispositivo/alvo
-        # ex: lunch lineage_device-userdebug
         
-    - name: Compilar
-      run: |
-        cd okcar_source
-        # Comando para iniciar a compilação do Android (mka bacon, make, etc.)
-        # echo "Iniciando compilação..."
+        # Define o alvo exato do teu telemóvel
+        lunch lineage_hero2lte-userdebug
+        
+        # Compila apenas o sistema customizado para gerar o zip instalável via TWRP
+        make systemimage -j$(nproc --all)
