@@ -40,7 +40,7 @@ jobs:
         # O sync baixa o default.xml e todos os repositórios, incluindo o 'okcar-os/okcar'
         repo sync -c -j$(nproc --all) --force-sync --no-clone-bundle --no-tags
 
- - name: Baixar Árvores do Galaxy S7 Edge (hero2lte)
+    - name: Baixar Árvores do Galaxy S7 Edge (hero2lte)
       run: |
         cd okcar_source
         # Puxa as configurações específicas de hardware que a comunidade LineageOS criou para o S7 Edge
