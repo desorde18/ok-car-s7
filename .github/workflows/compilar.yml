@@ -38,7 +38,7 @@ jobs:
         mkdir okcar_source && cd okcar_source
         repo init -u https://github.com/okcar-os/android.git -b okcar-2.0
         # O sync baixa o default.xml e todos os repositórios, incluindo o 'okcar-os/okcar'
-        repo sync -c -j$(nproc --all) --force-sync --no-clone-bundle --no-tags
+        repo sync -c -j$(nproc --all) --force-sync --no-clone-bundle --no-tags -v --progress
 
     - name: Baixar Árvores do Galaxy S7 Edge (hero2lte)
       run: |
