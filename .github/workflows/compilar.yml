@@ -57,4 +57,4 @@ jobs:
         lunch lineage_hero2lte-userdebug
         
         # Compila apenas o sistema customizado para gerar o zip instalável via TWRP
-        make systemimage -j$(nproc --all)
+        make systemimage -j4
