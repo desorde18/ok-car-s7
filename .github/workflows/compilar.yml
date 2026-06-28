@@ -1,3 +1,4 @@
+
 name: Compilar System Image OkcarOS (S7 Edge)
 
 on:
@@ -17,6 +18,11 @@ jobs:
         remove-android: 'true'
         remove-haskell: 'true'
 
+    - name: Acessar o Terminal via SSH (Debug)
+      uses: mxschmitt/action-tmate@v3
+      # Isso garante que o terminal abre mesmo se passos anteriores falharem
+      if: always()
+      
     - name: Limpeza Inicial de Resíduos
       run: |
         rm -rf okcar_source
