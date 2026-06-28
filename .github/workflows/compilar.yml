@@ -38,7 +38,8 @@ jobs:
         mkdir okcar_source && cd okcar_source
         repo init -u https://github.com/okcar-os/android.git -b okcar-2.0
         # O sync baixa o default.xml e todos os repositórios, incluindo o 'okcar-os/okcar'
-        repo sync -c -j$(nproc --all) --force-sync --no-clone-bundle --no-tags -v
+        repo sync -c -j4 --depth=1 --force-sync --no-clone-bundle --no-tags -v
+
 
     - name: Baixar Árvores do Galaxy S7 Edge (hero2lte)
       run: |
@@ -58,3 +59,4 @@ jobs:
         
         # Compila apenas o sistema customizado para gerar o zip instalável via TWRP
         make systemimage -j4
+        
