@@ -16,6 +16,9 @@ jobs:
         remove-dotnet: 'true'
         remove-android: 'true' # Remove o SDK padrão do runner para abrir espaço para a ROM
         remove-haskell: 'true'
+        rm -r -f okcar_source
+        
+        
 
     - name: Configurar Dependências do Linux
       run: |
